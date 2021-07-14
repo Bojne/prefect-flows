@@ -10,15 +10,13 @@ import glob
 
 base_url  = 'https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json'
 url_param = '?page=0&size=1000'
-raw_folder_path = 'data_raw'
-clean_folder_path = 'data_clean'
-data_csv_list = glob.glob(f"./{raw_folder_path}/*")
+folder_path = './data_raw'
+data_csv_list = glob.glob(f"{folder_path}/*")
 
 @task
 def get_data():
     logger = prefect.context.get("logger")
 
-    # should this be a input variable?
     target_url = base_url + url_param
     response = requests.get(target_url)
 
@@ -54,7 +52,7 @@ def save_data(data):
     logger = prefect.context.get("logger")
     now = datetime.now() 
     dt_string = now.strftime("%Y_%m_%d")
-    file_path = f"./{raw_folder_path}/snapshot_{dt_string}.csv"
+    file_path = f"./snapshot_{dt_string}.csv"
     if file_path not in data_csv_list:
         final_df = data
     else:
@@ -62,7 +60,7 @@ def save_data(data):
         current_df = pd.read_csv(file_path, index_col=False)
         final_df = pd.concat([current_df, data], ignore_index=True) 
     final_df.to_csv(file_path, index=False) # export the object to csv 
-    logger.info(f"PASS: Data is saved to {raw_folder_path} folder")
+    logger.info(f"PASS: Data is saved to folder")
     return None
 
 with Flow("youbike-data-fetch-flow") as flow:
@@ -71,6 +69,3 @@ with Flow("youbike-data-fetch-flow") as flow:
     data = wranggle_data(data)
     save_data(data)
 
-# Register the flow under the "ubike-example" project
-# flow.register(project_name="ubike-example")
-# flow.run()

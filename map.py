@@ -3,53 +3,53 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import glob
+import altair as alt
+import matplotlib.pyplot as plt
+
 
 raw_data_path = 'data_raw'
-
 data_files = glob.glob(f"./{raw_data_path}/*")
 data_files.sort()
 
-st.header("Prefect Flow Demo: Ubike Station Availability Map")
-
-# Read the datas 
-file_path = st.selectbox('Select CSV', data_files)
-df = pd.read_csv(file_path)
-df.set_index('sareaen')
-
-all_area = list(df['sareaen'].unique())
-areas = all_area
-if st.checkbox('Select Areas'):
-    areas = st.multiselect('Select Area', all_area, all_area)
-    df = df[df['sareaen'].isin(areas)]  
-
-if st.checkbox('Select Minimal Capacity'):
-    # min_bikes = st.select_slider('Slide to select', 0,1, (0.1,0.9))
-    values = st.slider('Select a range of values', 0.0, 1.0, (0.25, 0.75))
-    st.write('Full percentage range', values)
-    df = df[df['full_pct'] > values[0]]
-    df = df[df['full_pct'] < values[1]]
-
-# Format Data 
-df = df.rename(columns={"lng": "lon", 'sno': 'station id', 'tot': 'bike capcity', 'sbi': 'available bikes'})
-cols = ['station id', 'bike capcity', 'available bikes', 'mday', 'sareaen', 'snaen', 'aren', 'bemp', 'act']
-
-if st.checkbox('Select Time Range'):
-    hour_to_filter = st.slider('Hours', 0, 23, 17)
-    start_time = st.slider(
-        "Date Selector",
-        value=datetime(2020, 1, 1, 9, 30),
-        format="MM/DD/YY")
-    st.write("Selected Date", start_time)
-if st.checkbox('Show Raw Data'):
-    st.subheader('Raw data')
-    st.write(df.sort_index())
+st.header("Prefect Flow Demo 🚲")
 
 
-st.subheader('Distirbution')
-hist_values = np.histogram(df['full_pct'], bins=30, range=(0,1))[0]
-st.bar_chart(hist_values)
+@st.cache
+def get_data(file_path):
+    df = pd.read_csv(file_path)
+    df['mday'] = pd.to_datetime(df['mday'])
+    df['created_at'] = pd.to_datetime(df['created_at'])
+    df['time'] = pd.to_datetime(df['time'])
+    df['hour'] = df['mday'].dt.hour
+    return df 
 
-st.write('U-Bike Map')
+# Read the data
+# file_path = st.selectbox('Select CSV', data_files)
+
+file_path = data_files[-1]
+df = get_data(file_path)
+all_stations = df['snaen'].unique()
+select_stations = st.multiselect('Choose stations', list(all_stations), ['Dapeng Community', 'Xizhi Railway Station'])
+df = df[df['snaen'].isin(select_stations)]
+
+def plot_data(df,select_stations):
+    df = df.groupby(['hour','snaen']).mean()['bemp'].unstack() 
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.plot(
+        df.index,
+        df[select_stations]
+    )
+    ax.set_title('Bike Demand in a day')
+    ax.set_xlabel("Hours")
+    ax.set_ylabel("Number of empty spot in each station")
+    ax.legend(select_stations)
+
+    return fig
+
+st.write(plot_data(df,select_stations))
+df = df.rename(columns={"lng": "lon"})
+st.subheader('Station Location')
 st.map(df)
 
 

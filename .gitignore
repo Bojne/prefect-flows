@@ -1,2 +1,4 @@
 *.csv
 ubike.jpeg
+*.ipynb
+.DS_Store
