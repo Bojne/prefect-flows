@@ -1,6 +1,6 @@
 from flow import *
 import pytest
-
+import tempfile
 
 def test_flow_state():
     state = flow.run()
@@ -33,3 +33,9 @@ def test_wranggle_data():
     for c in new_cols: 
         assert c in data.columns
 
+def test_save_data():
+    mock_data = pd.DataFrame([{'sbi': 1, 'tot': 2, 'mday': 202107011300}])
+    temp_dir = tempfile.TemporaryDirectory()
+    file_path = save_data.run(mock_data, temp_dir.name)
+    assert file_path in glob.glob(f"{temp_dir.name}/*")
+    temp_dir.cleanup()
