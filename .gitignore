@@ -3,3 +3,4 @@ ubike.jpeg
 *.ipynb
 .DS_Store
 .pytest_cache
+.env*

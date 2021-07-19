@@ -1,7 +1,6 @@
-### Prefect Flow Tutorial 
+# Prefect Flow Example 
+### Fetching Bike Data from Government Open API  
 
-Using Prefect to do ETL 
+### Using Prefect to do ETL 
 
-UI Screenshot 
-
-Stack Used 
+### UI Screenshot 
