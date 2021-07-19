@@ -59,23 +59,23 @@ def wranggle_data(data):
     return data
 
 @task
-def save_data(data):
+def save_data(data, folder_path='./data_raw'):
     """Save the data"""
     logger = prefect.context.get("logger")
     now = datetime.now() 
-    dt_string = now.strftime("%Y_%m_%d")
-    folder_path = './data_raw'
-    file_path = f"{folder_path}/snapshot_{dt_string}.csv"
-    final_df = data
+    date_string = now.strftime("%Y_%m_%d")
+    file_path = f"{folder_path}/snapshot_{date_string}.csv"
     if file_path in glob.glob(f"{folder_path}/*"):
         logger.info("Merging new records to data csv")
         current_df = pd.read_csv(file_path, index_col=False)
         final_df = pd.concat([current_df, data], ignore_index=True) 
+    else: 
+        final_df = data 
     final_df.to_csv(file_path, index=False) # export the object to csv 
     logger.info(f"PASS: Data is saved to folder")
-    return None
+    return file_path
 
-with Flow("youbike-data-fetch-flow") as flow:
+with Flow("ubike-data-fetch-flow") as flow:
     station_limit = 1000
     url  = f'https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json?page=0&size={station_limit}'
     url = Parameter('API url', url)
