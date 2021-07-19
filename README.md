@@ -2,6 +2,8 @@
 Fetching Bike Data from Government Open API
 
 ## Installation 
+
+Installing required packages with Python virtual environment is the best practice to set thing up. You can do it via `pip` or `conda`:
 ### Python Virtual Environment
 ```
 pip install virtualenv
@@ -30,5 +32,4 @@ pip install -r requirements.txt
 TYPE|OBJECT|DESCRIPTION
 ---|---|---
 📁|[script](./script)| Python Code for data flow  
-
 📄|[requirements.txt](./requirements.txt)|Python packages required for local development of Prefect Flows in this repository
