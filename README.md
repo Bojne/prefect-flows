@@ -40,9 +40,17 @@ prefect run -p flow.py
 
 ## Prefect Cloud UI Demo
 
----|---
-![ui demo](images/quick-run.gif) | ![ui demo](images/realtime-dashboard.gif)
-![ui demo](images/view-schematic.gif) | ![ui demo](images/check-log.gif)
+<table>
+  <tr>
+    <td>Quick Run from the UI<img src="images/quick-run.gif" alt="2" width = 360px height = 200px></td>
+    <td>Realtime Dashboard<img src="images/realtime-dashboard.gif"  alt="1" width = 360px height = 200px ></td>
+   </tr> 
+   <tr>
+      <td>Code Schematic <img src="images/view-schematic.gif" alt="3" width = 360px height = 200px></td>
+      <td>Logging<img src="images/check-log.gif" alt="4" width = 360px height = 200px>
+  </td>
+  </tr>
+</table>
 ### Contribution 
 - Create an issue for suggestions 
 - Fork this repo and submit a PR for contribution
