@@ -1,8 +1,23 @@
 # Prefect Flow Example 
 A Prefect flow example that fetch and save bike data from [New Taipei City Open API](https://data.ntpc.gov.tw/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A).
 
+## Prefect Cloud UI Demo
+
+<table>
+  <tr>
+    <td>Quick Run from the UI<img src="images/quick-run.gif" alt="2" width = 360px height = 200px></td>
+    <td>Realtime Dashboard<img src="images/realtime-dashboard.gif"  alt="1" width = 360px height = 200px ></td>
+   </tr> 
+   <tr>
+      <td>Code Schematic <img src="images/view-schematic.gif" alt="3" width = 360px height = 200px></td>
+      <td>Logging<img src="images/check-log.gif" alt="4" width = 360px height = 200px>
+  </td>
+  </tr>
+</table>
+
 ## Prerequisites
-Have Python and pip / conda installed.
+- Have Python installed. 
+- Have pip or conda installed.
 
 ## Installation 
 
@@ -38,19 +53,7 @@ prefect run -p flow.py
 7. Set up an local agent `prefect agent local start --key "API_KEY"` 
 8. Once your agent is running, go to the cloud UI and click quick run 🚀 
 
-## Prefect Cloud UI Demo
 
-<table>
-  <tr>
-    <td>Quick Run from the UI<img src="images/quick-run.gif" alt="2" width = 360px height = 200px></td>
-    <td>Realtime Dashboard<img src="images/realtime-dashboard.gif"  alt="1" width = 360px height = 200px ></td>
-   </tr> 
-   <tr>
-      <td>Code Schematic <img src="images/view-schematic.gif" alt="3" width = 360px height = 200px></td>
-      <td>Logging<img src="images/check-log.gif" alt="4" width = 360px height = 200px>
-  </td>
-  </tr>
-</table>
 ### Contribution 
 - Create an issue for suggestions 
 - Fork this repo and submit a PR for contribution
