@@ -38,7 +38,11 @@ prefect run -p flow.py
 7. Set up an local agent `prefect agent local start --key "API_KEY"` 
 8. Once your agent is running, go to the cloud UI and click quick run 🚀 
 
-![ui demo](images/prefect-cloud-ui.gif)
+## Prefect Cloud UI Demo
+
+---|---
+![ui demo](images/quick-run.gif) | ![ui demo](images/realtime-dashboard.gif)
+![ui demo](images/view-schematic.gif) | ![ui demo](images/check-log.gif)
 ### Contribution 
 - Create an issue for suggestions 
 - Fork this repo and submit a PR for contribution
