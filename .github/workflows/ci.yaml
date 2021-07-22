@@ -26,7 +26,6 @@ jobs:
       - name: Install Shared Tasks
         run: | 
           pip install pytest
-          pip install .
       - name: Run tests
         run: pytest
 
