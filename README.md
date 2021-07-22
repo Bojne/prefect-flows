@@ -7,23 +7,21 @@ Have Python and pip / conda installed.
 ## Installation 
 
 Installing required packages with Python virtual environment is the best practice to set thing up. You can do it via `pip` or `conda`:
-### Python Virtual Environment
+### Install Packages in Python Virtual Environment 
 ```
 pip install virtualenv
 python -m venv prefect-flow-example
 source activate prefect-flow-example/bin/activate
+pip install -r requirements.txt
 ```
 
 ### Conda Virtual Environment
 ```
 conda create -n prefect-flow-example python=3.7
 source activate prefect-flow-example
+conda config --append channels conda-forge
 ```
 
-To install the required packages:
-```
-pip install -r requirements.txt
-```
 ## Usage 
 #### Run the Flow 
 ```
