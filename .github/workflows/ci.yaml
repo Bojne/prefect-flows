@@ -26,7 +26,11 @@ jobs:
       - name: Install Shared Tasks
         run: | 
           pip install pytest
-          pip install -r requirements.txt
+          conda create -n prefect-flow-example python=3.7
+          source activate prefect-flow-example
+          conda config --append channels conda-forge
+          conda install --file requirements.txt
+
       - name: Run tests
         run: pytest
 
