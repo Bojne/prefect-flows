@@ -79,7 +79,6 @@ with Flow("ubike-data-fetch-flow") as flow:
     station_limit = 1000
     url  = f'https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json?page=0&size={station_limit}'
     url = Parameter('API url', url)
-
     response = fetch_data_request(url)
     data = parse_response(response)
     check_data(data)

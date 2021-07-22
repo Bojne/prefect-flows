@@ -1,5 +1,8 @@
 # Prefect Flow Example 
-Fetching Bike Data from Government Open API
+A Prefect flow example that fetch and save bike data from [New Taipei City Open API](https://data.ntpc.gov.tw/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A).
+
+## Prerequisites
+Have Python and pip / conda installed.
 
 ## Installation 
 
@@ -15,17 +18,22 @@ source activate prefect-flow-example/bin/activate
 ```
 conda create -n prefect-flow-example python=3.7
 source activate prefect-flow-example
-Package installation
 ```
 
 To install the required packages:
 ```
 pip install -r requirements.txt
 ```
-### Using Prefect to do ETL 
+## Usage 
+#### Run the Flow 
+```
+prefect run -p flow.py  
+```
 
-### UI Screenshot 
 
+### Contribution 
+- Create an issue for suggestions 
+- Fork this repo and submit a PR for contribution
 
 ### Project Layout 
 

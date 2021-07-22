@@ -4,3 +4,4 @@ ubike.jpeg
 .DS_Store
 .pytest_cache
 .env*
+__pycache__
