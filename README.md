@@ -38,6 +38,7 @@ prefect run -p flow.py
 7. Set up an local agent `prefect agent local start --key "API_KEY"` 
 8. Once your agent is running, go to the cloud UI and click quick run 🚀 
 
+![ui demo](images/prefect-cloud-ui.gif)
 ### Contribution 
 - Create an issue for suggestions 
 - Fork this repo and submit a PR for contribution
@@ -46,6 +47,10 @@ prefect run -p flow.py
 
 TYPE|OBJECT|DESCRIPTION
 ---|---|---
-📁|[script](./script)| Python Code for data flow  
-📄|[flow.py](./requirements.txt)| The Prefect flow in Python 
+📄|[flow.py](./flow.py)| The main Prefect flow
 📄|[requirements.txt](./requirements.txt)|Python packages required for local development of Prefect Flows in this repository
+📄|[README.md](./readme.md)| The doc you're reading 
+📁|[frontend](./frontend)| Folder for web app code and assets 
+📁|[data_raw](./data_raw)| Folder to save csv data files (created by the flow) 
+📁|[test](./test)| Folder for test scripts   
+📁|[image](./image)| Folder for images file
