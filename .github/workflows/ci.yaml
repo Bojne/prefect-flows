@@ -38,4 +38,4 @@ jobs:
           docker push bojne/prefect-flows:latest
       - name: Register Flows
         if: github.ref == 'refs/heads/master'
-        run: prefect register flow --file flows/github_stars.py --project testing
+        run: prefect register flow --file flow.py --project "ubike-example"
