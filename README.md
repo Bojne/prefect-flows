@@ -23,11 +23,20 @@ conda config --append channels conda-forge
 ```
 
 ## Usage 
-#### Run the Flow 
+### Runing the Flow with Prefect CLI 
 ```
 prefect run -p flow.py  
 ```
 
+### Running on Prefect Cloud 
+1. Create an free account on [cloud.prefect.io](https://cloud.prefect.io/)
+2. Get the API key from the UI 
+3. Register your flow with your key  `prefect auth login -k KEY_PLACEHOLDER`
+4. Create a Project `prefect create project "ubike-project"`
+5. Register your flow `prefect register -p flow.py --project 'ubike-project'`
+6. Refresh the cloud and check if your flow is being registered under the project 
+7. Set up an local agent `prefect agent local start --key "API_KEY"` 
+8. Once your agent is running, go to the cloud UI and click quick run 🚀 
 
 ### Contribution 
 - Create an issue for suggestions 
@@ -38,4 +47,5 @@ prefect run -p flow.py
 TYPE|OBJECT|DESCRIPTION
 ---|---|---
 📁|[script](./script)| Python Code for data flow  
+📄|[flow.py](./requirements.txt)| The Prefect flow in Python 
 📄|[requirements.txt](./requirements.txt)|Python packages required for local development of Prefect Flows in this repository
