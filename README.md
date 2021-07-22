@@ -32,8 +32,6 @@ pip install -r requirements.txt
 
 ### Conda Virtual Environment
 ```
-conda create -n prefect-flow-example python=3.7
-source activate prefect-flow-example
 conda config --append channels conda-forge
 conda install --file requirements.txt
 ```
