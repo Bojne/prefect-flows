@@ -27,8 +27,8 @@ jobs:
         run: | 
           pip install pytest
           pip install .
-      # - name: Run tests
-        # run: py.test tests
+      - name: Run tests
+        run: pytest
 
       - name: Build and Upload Image
         if: github.ref == 'refs/heads/master'
