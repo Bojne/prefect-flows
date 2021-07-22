@@ -1,3 +1,4 @@
+
 import prefect
 from prefect import Flow, task, Parameter
 from datetime import datetime
@@ -6,8 +7,7 @@ from requests.exceptions import HTTPError
 import pandas as pd
 import glob
 
-logger = prefect.context.get("logger") # should I declare global logger?
-
+logger = prefect.context.get("logger") 
 @task
 def fetch_data_request(url):
     """
