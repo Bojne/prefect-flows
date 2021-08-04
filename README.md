@@ -21,20 +21,37 @@ A Prefect flow example that fetch and save bike data from [New Taipei City Open 
 
 ## Installation 
 
-Installing required packages with Python virtual environment is the best practice to set thing up. You can do it via `pip` or `conda`:
+Installing required packages with Python virtual environment is the best practice to set thing up. You can do it via `pip` or `conda`.
 ### Install Packages in Python Virtual Environment 
-```
-pip install virtualenv
-python -m venv prefect-flow-example
-source activate prefect-flow-example/bin/activate
-pip install -r requirements.txt
-```
 
-### Conda Virtual Environment
-```
-conda config --append channels conda-forge
-conda install --file requirements.txt
-```
+<details>
+<summary>Use Python venv to install packages </summary>
+
+    pip install virtualenv
+    python -m venv prefect-flow-example
+    source prefect-flow-example/bin/activate
+    pip install -r requirements.txt
+
+</details>
+
+<details>
+ <summary>Use Conda envrionment to install packages </summary>
+
+    conda create -n prefect-flow-example python=3.7
+    source activate prefect-webscraper-example
+    conda config --append channels conda-forge
+    conda install --file requirements.txt
+
+</details>
+
+<details>
+ <summary>Install packages without </summary>
+
+    pip install -r requirements.txt
+
+    // or conda install --file requirements.txt
+
+</details>
 
 ## Usage 
 ### Runing the Flow with Prefect CLI 
