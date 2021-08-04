@@ -25,7 +25,7 @@ def fetch_data_request(station_limit):
     return response.json()
 
 @task 
-def check_data(data, expect_len = 14):
+def check_data(data, expect_len = 13):
     """
     Check if any values are missing from the data source 
     """
@@ -74,10 +74,8 @@ def save_data(data, folder_path='./data_raw'):
     return file_path
 
 with Flow("ubike-data-fetch-flow") as flow:
-    station_limit = 1000
-    url  = f'https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json?page=0&size={station_limit}'
-    url = Parameter('API url', url)
-    data = fetch_data_request(url)
+    station_limit = Parameter('station limit', 1000)
+    data = fetch_data_request(station_limit)
     check_data(data)
     data = wranggle_data(data)
     save_data(data)
